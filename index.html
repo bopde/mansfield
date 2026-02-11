@@ -27,8 +27,6 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { background: var(--white); color: var(--deep); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
-
-    /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 3rem; background: rgba(7,28,46,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(74,144,184,0.15); }
     .nav-logo { font-family: var(--font-display); font-size: 1.25rem; font-weight: 300; letter-spacing: 0.12em; color: var(--foam); text-decoration: none; text-transform: uppercase; }
     .nav-links { display: flex; gap: 2.2rem; list-style: none; }
@@ -36,8 +34,6 @@
     .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--fern); transition: width 0.3s ease; }
     .nav-links a:hover, .nav-links a.active { color: var(--foam); }
     .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-
-    /* HERO */
     #hero { min-height: 100vh; position: relative; display: flex; align-items: center; overflow: hidden; background: var(--deep); }
     .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(26,82,118,0.55) 0%, transparent 65%), radial-gradient(ellipse 50% 80% at 10% 80%, rgba(61,92,58,0.4) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 90% 10%, rgba(74,144,184,0.2) 0%, transparent 55%); }
     .orb { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.18; animation: drift 20s ease-in-out infinite alternate; }
@@ -45,41 +41,32 @@
     .orb-2 { width: 340px; height: 340px; background: var(--sage); bottom: 80px; left: -60px; animation-duration: 18s; animation-delay: -8s; }
     .orb-3 { width: 260px; height: 260px; background: var(--sand); top: 50%; left: 38%; animation-duration: 25s; animation-delay: -4s; }
     @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(40px,30px) scale(1.08); } }
-
-    .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 1100px; padding: 0 3rem; margin: 5rem auto 0; display: flex; align-items: center; justify-content: space-between; gap: 3rem; }
-    .hero-content { max-width: 580px; }
+    /* FIX 4: left-anchored layout + larger photo */
+    .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 1100px; padding: 0 3rem; margin: 5rem auto 0; display: flex; align-items: center; justify-content: flex-start; gap: 4rem; }
+    .hero-content { max-width: 520px; flex-shrink: 0; }
     .hero-eyebrow { font-size: 0.73rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fern); margin-bottom: 1.2rem; animation: fadeUp 1.1s 0.15s ease both; }
     .hero-name { font-family: var(--font-display); font-size: clamp(3.6rem, 7vw, 7rem); font-weight: 300; line-height: 1.0; color: var(--foam); letter-spacing: -0.01em; margin-bottom: 1.6rem; animation: fadeUp 1.1s 0.25s ease both; }
     .hero-name em { font-style: italic; color: var(--sky); }
     .hero-tagline { font-size: 1.05rem; font-weight: 300; color: rgba(214,234,248,0.68); max-width: 480px; line-height: 1.78; margin-bottom: 2.6rem; animation: fadeUp 1.1s 0.38s ease both; }
     .hero-cta-row { display: flex; gap: 1.2rem; flex-wrap: wrap; animation: fadeUp 1.1s 0.5s ease both; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: translateY(0); } }
-
     .hero-photo-wrap { flex-shrink: 0; position: relative; animation: fadeUp 1.1s 0.4s ease both; }
     .hero-photo-wrap::before { content: ''; position: absolute; inset: -14px; border-radius: 50%; background: conic-gradient(from 0deg, var(--fern), var(--sky), var(--sage), var(--fern)); opacity: 0.3; filter: blur(18px); animation: drift 18s ease-in-out infinite alternate; }
-    .hero-photo { width: 260px; height: 260px; border-radius: 50%; object-fit: cover; object-position: center top; border: 3px solid rgba(74,144,184,0.4); position: relative; z-index: 1; }
-
+    .hero-photo { width: 320px; height: 320px; border-radius: 50%; object-fit: cover; object-position: center top; border: 3px solid rgba(74,144,184,0.4); position: relative; z-index: 1; }
     .hero-wave { position: absolute; bottom: 0; left: 0; right: 0; height: 200px; overflow: hidden; }
     .hero-wave svg { width: 200%; height: 100%; animation: waveFlow 14s linear infinite; }
     @keyframes waveFlow { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
     .btn-primary { display: inline-block; padding: 0.85rem 2.2rem; background: var(--sage); color: var(--white); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background 0.25s, transform 0.2s; }
     .btn-primary:hover { background: var(--moss); transform: translateY(-2px); }
     .btn-outline { display: inline-block; padding: 0.85rem 2.2rem; border: 1px solid rgba(74,144,184,0.45); color: var(--foam); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: border-color 0.25s, background 0.25s, transform 0.2s; }
     .btn-outline:hover { border-color: var(--sky); background: rgba(74,144,184,0.1); transform: translateY(-2px); }
-
-    /* SECTION BASE */
     section { padding: 7rem 3rem; position: relative; }
     .section-inner { max-width: 1100px; margin: 0 auto; }
     .section-tag { display: inline-block; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 1.2rem; padding: 0.28rem 0.85rem; border-radius: 2px; }
     .section-title { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.2rem; }
     .section-intro { font-size: 1.0rem; font-weight: 300; line-height: 1.8; max-width: 620px; margin-bottom: 3.5rem; opacity: 0.78; }
-
-    /* WAVE DIVIDERS */
     .wave-divider { display: block; width: 100%; overflow: hidden; line-height: 0; }
     .wave-divider svg { display: block; }
-
-    /* SUB-HEADERS */
     .sub-section { margin-bottom: 3.5rem; }
     .sub-section:last-child { margin-bottom: 0; }
     .sub-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; padding-bottom: 0.8rem; border-bottom: 2px solid rgba(13,46,74,0.12); }
@@ -90,53 +77,29 @@
     .sub-header-dark .sub-header-num { color: rgba(74,144,184,0.22); }
     .sub-header-dark .sub-header-text h3 { color: var(--foam); }
     .sub-header-dark .sub-header-text p { color: var(--sky); }
-
-    /* ═══ CONSULTING ═══ */
+    /* CONSULTING */
     #consulting { background: var(--cream); }
     #consulting .section-tag { background: rgba(13,46,74,0.1); color: var(--ocean); }
     #consulting .section-title { color: var(--ocean); }
-
-    .consulting-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-
-    /* Org group (AT umbrella) */
     .org-group { margin-bottom: 1.8rem; }
     .org-group:last-child { margin-bottom: 0; }
-    .org-group-header { display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0; padding: 0.65rem 1rem; background: rgba(13,46,74,0.06); border-left: 3px solid var(--sky); border-radius: 0 2px 2px 0; }
+    .org-group-header { display: flex; align-items: baseline; gap: 0.7rem; padding: 0.65rem 1rem; background: rgba(13,46,74,0.06); border-left: 3px solid var(--sky); border-radius: 0 2px 2px 0; }
     .org-group-header h4 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; color: var(--ocean); }
     .org-group-header span { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sky); margin-left: auto; }
-    .nested-roles { padding-left: 1rem; border-left: 1px solid rgba(13,46,74,0.1); margin-left: 0; }
+    .nested-roles { padding-left: 1rem; border-left: 1px solid rgba(13,46,74,0.1); }
     .nested-role { padding: 1.1rem 0 1.1rem 1rem; border-bottom: 1px solid rgba(13,46,74,0.06); position: relative; }
     .nested-role:last-child { border-bottom: none; }
     .nested-role::before { content: ''; position: absolute; left: -1px; top: 1.55rem; width: 8px; height: 1px; background: rgba(13,46,74,0.18); }
-
-    /* Timeline items (standalone roles) */
-    .tl-item { position: relative; margin-bottom: 1.8rem; padding-bottom: 1.8rem; border-bottom: 1px solid rgba(13,46,74,0.08); }
-    .tl-item:last-child { border-bottom: none; margin-bottom: 0; }
     .tl-role { font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; color: var(--ocean); margin-bottom: 0.15rem; }
-    .tl-org { font-size: 0.74rem; font-weight: 500; letter-spacing: 0.08em; color: var(--sage); text-transform: uppercase; margin-bottom: 0.15rem; }
     .tl-date { font-size: 0.72rem; color: #aaa; margin-bottom: 0.7rem; }
     .tl-body { font-size: 0.87rem; color: #555; line-height: 1.72; }
     .tl-body ul { margin-top: 0.5rem; padding-left: 1.1rem; }
     .tl-body ul li { margin-bottom: 0.3rem; }
     .nested-role .tl-role { font-size: 1.05rem; }
-
-    /* Sidebar */
-      /* Sidebar */
-      .consulting-layout > div:last-child {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.6rem;
-      }
-      .sidebar-block { 
-        background: var(--white); 
-        border: 1px solid rgba(13,46,74,0.09); 
-        border-radius: 4px; 
-        padding: 2rem; 
-        transition: box-shadow 0.25s; 
-      }
-      .sidebar-block:hover { 
-        box-shadow: 0 10px 30px rgba(13,46,74,0.08); 
-      }
+    /* FIX 2: 3-col grid for boxes at bottom of consulting */
+    .consulting-boxes { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.6rem; margin-top: 3.5rem; }
+    .sidebar-block { background: var(--white); border: 1px solid rgba(13,46,74,0.09); border-radius: 4px; padding: 2rem; transition: box-shadow 0.25s; }
+    .sidebar-block:hover { box-shadow: 0 10px 30px rgba(13,46,74,0.08); }
     .sidebar-block h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; color: var(--ocean); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(13,46,74,0.07); }
     .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .skill-tag { font-size: 0.75rem; padding: 0.28rem 0.72rem; border-radius: 2px; background: rgba(13,46,74,0.06); color: var(--ocean); border: 1px solid rgba(13,46,74,0.09); }
@@ -145,13 +108,11 @@
     .award-icon { font-size: 1.3rem; flex-shrink: 0; }
     .award-body h4 { font-size: 0.87rem; font-weight: 500; color: var(--ocean); margin-bottom: 0.12rem; }
     .award-body p { font-size: 0.79rem; color: #777; line-height: 1.55; }
-
-    /* ═══ SCIENCE ═══ */
+    /* SCIENCE */
     #science { background: var(--ocean); }
     #science .section-tag { background: rgba(74,144,184,0.18); color: var(--sky); }
     #science .section-title { color: var(--foam); }
     #science .section-intro { color: rgba(214,234,248,0.68); }
-
     .science-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.8rem; margin-bottom: 0; }
     .sci-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(74,144,184,0.2); border-radius: 4px; padding: 2.2rem; transition: background 0.25s, border-color 0.25s, transform 0.25s; }
     .sci-card:hover { background: rgba(74,144,184,0.1); border-color: rgba(74,144,184,0.45); transform: translateY(-4px); }
@@ -159,20 +120,18 @@
     .sci-meta { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sky); margin-bottom: 0.6rem; }
     .sci-card h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; color: var(--foam); margin-bottom: 0.6rem; }
     .sci-card p { font-size: 0.87rem; color: rgba(214,234,248,0.58); line-height: 1.7; }
-
     .comms-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-top: 1.6rem; }
     .comm-chip { display: flex; align-items: flex-start; gap: 0.9rem; padding: 1.3rem 1.5rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(74,144,184,0.15); border-radius: 4px; transition: background 0.22s, border-color 0.22s; }
     .comm-chip:hover { background: rgba(74,144,184,0.08); border-color: rgba(74,144,184,0.35); }
     .comm-chip-icon { font-size: 1.3rem; flex-shrink: 0; }
     .comm-chip-text h4 { font-size: 0.87rem; font-weight: 500; color: var(--foam); margin-bottom: 0.18rem; }
     .comm-chip-text p { font-size: 0.77rem; color: rgba(214,234,248,0.45); line-height: 1.55; }
-
-    /* ═══ MARINE ═══ */
+    /* MARINE — FIX 3: bg shape behind content */
     #marine { background: var(--white); position: relative; }
-    .marine-bg-shape { position: absolute; top: 0; right: 0; width: 42%; height: 100%; background: linear-gradient(135deg, var(--foam) 0%, rgba(26,82,118,0.05) 100%); clip-path: polygon(18% 0%, 100% 0%, 100% 100%, 0% 100%); pointer-events: none; }
+    .marine-bg-shape { position: absolute; top: 0; right: 0; width: 42%; height: 100%; background: linear-gradient(135deg, var(--foam) 0%, rgba(26,82,118,0.05) 100%); clip-path: polygon(18% 0%, 100% 0%, 100% 100%, 0% 100%); pointer-events: none; z-index: 0; }
+    #marine .section-inner { position: relative; z-index: 1; }
     #marine .section-tag { background: rgba(26,82,118,0.1); color: var(--tide); }
     #marine .section-title { color: var(--ocean); }
-
     .marine-timeline { display: grid; grid-template-columns: 1fr 1fr; gap: 0 3rem; margin-bottom: 4rem; }
     .mtl-item { padding-bottom: 2rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(13,46,74,0.07); }
     .mtl-item:nth-last-child(-n+2) { border-bottom: none; margin-bottom: 0; }
@@ -180,7 +139,6 @@
     .mtl-org { font-size: 0.74rem; font-weight: 500; letter-spacing: 0.08em; color: var(--tide); text-transform: uppercase; }
     .mtl-date { font-size: 0.72rem; color: #aaa; margin: 0.1rem 0 0.55rem; }
     .mtl-body { font-size: 0.86rem; color: #555; line-height: 1.68; }
-
     .marine-certs { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.6rem; }
     .cert-block { background: var(--cream); border-radius: 4px; padding: 1.8rem; border: 1px solid rgba(13,46,74,0.07); }
     .cert-block h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 400; color: var(--ocean); margin-bottom: 1rem; padding-bottom: 0.55rem; border-bottom: 1px solid rgba(13,46,74,0.08); }
@@ -192,14 +150,12 @@
     .stat-item { text-align: center; padding: 1.2rem; background: var(--ocean); border-radius: 4px; }
     .stat-num { font-family: var(--font-display); font-size: 2.5rem; font-weight: 300; color: var(--sky); line-height: 1; }
     .stat-label { font-size: 0.72rem; font-weight: 300; color: rgba(214,234,248,0.5); margin-top: 0.28rem; letter-spacing: 0.05em; }
-
-    /* ═══ MUSIC ═══ */
+    /* MUSIC */
     #music { background: var(--deep); overflow: hidden; }
     .music-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 80% 60%, rgba(93,122,90,0.22) 0%, transparent 60%), radial-gradient(ellipse 50% 70% at 20% 30%, rgba(26,82,118,0.3) 0%, transparent 60%); pointer-events: none; }
     #music .section-tag { background: rgba(138,170,122,0.18); color: var(--fern); }
     #music .section-title { color: var(--cream); }
     #music .section-intro { color: rgba(245,240,232,0.58); }
-
     .music-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
     .instruments-showcase { display: flex; flex-direction: column; gap: 1rem; }
     .instr-card { display: flex; align-items: center; gap: 1.4rem; padding: 1.4rem 1.6rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(138,170,122,0.15); border-radius: 4px; transition: background 0.25s, border-color 0.25s, transform 0.2s; }
@@ -212,7 +168,6 @@
     .genre-pills { display: flex; flex-wrap: wrap; gap: 0.55rem; }
     .genre-pill { padding: 0.38rem 1rem; border-radius: 100px; font-size: 0.77rem; font-weight: 300; letter-spacing: 0.05em; border: 1px solid rgba(138,170,122,0.25); color: rgba(245,240,232,0.62); transition: background 0.2s, color 0.2s; cursor: default; }
     .genre-pill:hover { background: rgba(138,170,122,0.15); color: var(--fern); }
-
     /* CONTACT */
     #contact { background: var(--cream); text-align: center; }
     #contact .section-tag { background: rgba(13,46,74,0.09); color: var(--ocean); }
@@ -221,24 +176,18 @@
     .contact-grid { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
     .contact-chip { display: flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.8rem; background: var(--white); border: 1px solid rgba(13,46,74,0.1); border-radius: 100px; font-size: 0.85rem; color: var(--ocean); text-decoration: none; transition: background 0.25s, border-color 0.25s, transform 0.2s, box-shadow 0.25s; }
     .contact-chip:hover { background: var(--ocean); color: var(--foam); border-color: var(--ocean); transform: translateY(-3px); box-shadow: 0 10px 24px rgba(13,46,74,0.18); }
-
-    /* FOOTER */
     footer { background: var(--deep); color: rgba(214,234,248,0.35); text-align: center; padding: 2.2rem 3rem; font-size: 0.75rem; letter-spacing: 0.07em; }
     footer a { color: var(--sky); text-decoration: none; }
     footer a:hover { color: var(--foam); }
-
-    /* SCROLL REVEAL */
     .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .reveal.visible { opacity: 1; transform: none; }
-
-    /* RESPONSIVE */
     @media (max-width: 860px) {
-      .consulting-layout, .music-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-      .consulting-layout > div:last-child {grid-template-columns: 1fr;}
+      .consulting-boxes { grid-template-columns: 1fr; }
+      .music-layout { grid-template-columns: 1fr; gap: 2.5rem; }
       .marine-bg-shape { display: none; }
       .marine-timeline { grid-template-columns: 1fr; }
       .hero-inner { flex-direction: column-reverse; align-items: flex-start; padding: 0 1.4rem; gap: 2rem; }
-      .hero-photo { width: 180px; height: 180px; }
+      .hero-photo { width: 200px; height: 200px; }
     }
     @media (max-width: 640px) {
       nav { padding: 1rem 1.4rem; }
@@ -250,7 +199,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="main-nav">
   <a href="#hero" class="nav-logo">Ben Mansfield</a>
   <ul class="nav-links">
@@ -262,35 +210,25 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
-
   <div class="hero-inner">
     <div class="hero-content">
       <p class="hero-eyebrow">Programme Manager · Behavioural Scientist · Marine Engineer · Musician</p>
       <h1 class="hero-name">Ben<br><em>Mansfield</em></h1>
-      <p class="hero-tagline">
-        An integrative thinker navigating the spaces between strategy, science, and policy. Passionate abou the ocean, and making music.
-      </p>
+      <p class="hero-tagline">An integrative thinker navigating the spaces between strategy, science, and policy. Passionate about the ocean, and making music.</p>
       <div class="hero-cta-row">
         <a href="#consulting" class="btn-primary">Explore Work</a>
         <a href="#contact" class="btn-outline">Get in Touch</a>
       </div>
     </div>
     <div class="hero-photo-wrap">
-      <img
-        src="https://raw.githubusercontent.com/bopde/mansfield/main/linkedin.jpg"
-        alt="Ben Mansfield"
-        class="hero-photo"
-        crossorigin="anonymous"
-      />
+      <img src="https://raw.githubusercontent.com/bopde/mansfield/main/linkedin.jpg" alt="Ben Mansfield" class="hero-photo" crossorigin="anonymous"/>
     </div>
   </div>
-
   <div class="hero-wave">
     <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,100 C180,170 360,30 540,100 C720,170 900,30 1080,100 C1260,170 1440,30 1440,100 L1440,200 L0,200 Z" fill="rgba(245,240,232,0.06)"/>
@@ -299,321 +237,188 @@
   </div>
 </section>
 
-<!-- ═══════════ CONSULTING ═══════════ -->
-<span class="wave-divider">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:var(--deep);">
-    <path d="M0,0 C360,60 1080,0 1440,40 L1440,60 L0,60 Z" fill="var(--cream)"/>
-  </svg>
-</span>
+<span class="wave-divider"><svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:var(--deep);"><path d="M0,0 C360,60 1080,0 1440,40 L1440,60 L0,60 Z" fill="var(--cream)"/></svg></span>
 
 <section id="consulting">
   <div class="section-inner">
     <div class="reveal">
       <span class="section-tag">Consulting &amp; Programme Management</span>
       <h2 class="section-title">Strategy, Delivery<br>&amp; Stakeholder Leadership</h2>
-      <p class="section-intro">
-        From a world-first network of community bike spaces to city-wide behavioural change programmes — taking complex, multi-stakeholder projects from idea through to lasting impact.
-      </p>
+      <p class="section-intro">From a world-first network of community bike spaces to city-wide behavioural change programmes — taking complex, multi-stakeholder projects from idea through to lasting impact.</p>
     </div>
 
-    <div class="consulting-layout">
-
-      <!-- LEFT: 3 sub-sections -->
-      <div>
-
-        <!-- 1. Programme Management -->
-        <div class="sub-section reveal">
-          <div class="sub-header">
-            <span class="sub-header-num">1</span>
-            <div class="sub-header-text">
-              <h3>Programme Management</h3>
-              <p>End-to-end project delivery</p>
-            </div>
-          </div>
-
-          <div class="org-group">
-            <div class="org-group-header">
-              <h4>Auckland Transport</h4>
-              <span>Auckland, NZ</span>
-            </div>
-            <div class="nested-roles">
-              <div class="nested-role">
-                <h3 class="tl-role">Programme Manager — Bike Hubs</h3>
-                <p class="tl-date">May 2022 – September 2024</p>
-                <div class="tl-body">
-                  <p>Synthesised and delivered the world's first network of free, community-run bike repair shops — growing from 4 to 14 locations across Auckland on a $2 million budget.</p>
-                  <ul>
-                    <li>Co-designed the Bike Hub operating model with hundreds of stakeholders, from elected members to community and cultural groups.</li>
-                    <li>Led procurement, detailed design, landowner consents, construction, and programme integration.</li>
-                    <li>The network now reaches 50,000 Aucklanders per year.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="org-group">
-            <div class="org-group-header">
-              <h4>Ecological Associates</h4>
-              <span>Auckland, NZ</span>
-            </div>
-            <div class="nested-roles">
-              <div class="nested-role">
-              <h3 class="tl-role">Project Lead</h3>
-              <p class="tl-date">April – November 2019</p>
-              <div class="tl-body">
-                <p>Led the delivery of multiple doorstep engagement projects to inform householders about their travel and energy choices on behalf of the local council. </p>
-                <ul>
-                  <li>Coordinated daily operations across nearly 2,000 households and 17 team members.</li>
-                  <li>○Researched and developed new projects with an explicit focus on their business case and social impacts.</li> 
-                  <li>Maintained and improved backend systems for accounting, performance metrics, and database analysis.</li>
-                </ul>
-              </div>
+    <!-- 1. Programme Management -->
+    <div class="sub-section reveal">
+      <div class="sub-header">
+        <span class="sub-header-num">1</span>
+        <div class="sub-header-text"><h3>Programme Management</h3><p>End-to-end project delivery</p></div>
+      </div>
+      <div class="org-group">
+        <div class="org-group-header"><h4>Auckland Transport</h4><span>Auckland, NZ</span></div>
+        <div class="nested-roles">
+          <div class="nested-role">
+            <h3 class="tl-role">Programme Manager — Bike Hubs</h3>
+            <p class="tl-date">May 2022 – September 2024</p>
+            <div class="tl-body">
+              <p>Synthesised and delivered the world's first network of free, community-run bike repair shops — growing from 4 to 14 locations across Auckland on a $2 million budget.</p>
+              <ul>
+                <li>Co-designed the Bike Hub operating model with hundreds of stakeholders, from elected members to community and cultural groups.</li>
+                <li>Led procurement, detailed design, landowner consents, construction, and programme integration.</li>
+                <li>The network now reaches 50,000 Aucklanders per year.</li>
+              </ul>
             </div>
           </div>
         </div>
-
-        <!-- 2. Growth & Delivery -->
-        <div class="sub-section reveal">
-          <div class="sub-header">
-            <span class="sub-header-num">2</span>
-            <div class="sub-header-text">
-              <h3>Growth &amp; Delivery</h3>
-              <p>Operations, systems &amp; scale</p>
-            </div>
-          </div>
-          
-          <div class="org-group">
-            <div class="org-group-header">
-              <h4>LegaSea</h4>
-              <span>Auckland, NZ</span>
-            </div>
-            <div class="nested-roles">
-              <div class="nested-role">
-                <h3 class="tl-role">Kai Ika Growth Lead &nbsp;<span style="font-size:0.65rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--fern);background:rgba(93,122,90,0.12);border:1px solid rgba(93,122,90,0.3);padding:0.15rem 0.55rem;border-radius:2px;vertical-align:middle;">Current</span></h3>
-                <p class="tl-date">November 2025 - Present</p>
-                <div class="tl-body">
-                  <p>Managed day to day operations to develop new approaches to delivering core services while reducing cost, complexity, and staff pressure.</p>
-                  <ul>
-                    <li>Operations manager for the Kai Ika Project Filleting Station at Westhaven Marina - the largest marina in the southern hemisphere.</li>
-                    <li>Supported the delivery of over 2,500 kg of free fish heads and frames to community each week via Marae and community partners.</li>
-                    <li>Implemented optimisation and growth strategies, reducing administration by 3 hrs/week.</li>
-                    <li>Retrofit and scaled a defunct coffee cart into a coffee fundraiser and engagement tool.</li>
-                  </ul>
-              </div>
+      </div>
+      <div class="org-group">
+        <div class="org-group-header"><h4>Ecological Associates</h4><span>Auckland, NZ</span></div>
+        <div class="nested-roles">
+          <div class="nested-role">
+            <h3 class="tl-role">Project Lead</h3>
+            <p class="tl-date">April – November 2019</p>
+            <div class="tl-body">
+              <p>Led the delivery of multiple doorstep engagement projects to inform householders about their travel and energy choices on behalf of the local council.</p>
+              <ul>
+                <li>Coordinated daily operations across nearly 2,000 households and 17 team members.</li>
+                <li>Researched and developed new projects with an explicit focus on their business case and social impacts.</li>
+                <li>Maintained and improved backend systems for accounting, performance metrics, and database analysis.</li>
+              </ul>
             </div>
           </div>
         </div>
+      </div>
+    </div>
 
-          <div class="org-group">
-            <div class="org-group-header">
-              <h4>Auckland Transport</h4>
-              <span>Auckland, NZ</span>
-            </div>
-            <div class="nested-roles">
-              <div class="nested-role">
-                <h3 class="tl-role">Senior Travel Demand Planner</h3>
-                <p class="tl-date">September 2021 – May 2022</p>
-                <div class="tl-body">
-                  <p>Tripled team capacity, saving 500 hours annually by developing numerous customer facing and backend systems </p>
-                   <ul>
-                    <li>Product owner for a new CRM tool to manage the TravelWise B2B programme.</li>
-                    <li>Developed a proof of concept travel gamification app. </li>
-                    <li>Created a new travel survey platform to report on and share CO2, time and cost savings.</li>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3. Behavioural Science -->
-        <div class="sub-section reveal">
-          <div class="sub-header">
-            <span class="sub-header-num">3</span>
-            <div class="sub-header-text">
-              <h3>Behavioural Science</h3>
-              <p>Evidence-based behaviour change</p>
-            </div>
-          </div>
-
-          <div class="org-group">
-            <div class="org-group-header">
-              <h4>Auckland Transport</h4>
-              <span>Auckland, NZ</span>
-            </div>
-            <div class="nested-roles">
-              <div class="nested-role">
-                <h3 class="tl-role">Travel Demand Planner</h3>
-                <p class="tl-date">November 2019 – September 2021</p>
-                <div class="tl-body">
-                  <p>Developed behavioural science–informed, equity-based transport initiatives including the e-bike loan scheme, unicycle hackathon, and area-based action plans.</p>
-                  <ul>
-                    <li>Led the Aotearoa Bike Challenge — 40 events, 617 businesses, 7,500 participants — exceeding monthly cycling targets by 9.4%.</li>
-                    <li>Led three regional month-long campaigns reaching over 200,000 Aucklanders.</li>
-                    <li>Maintained extensive networks across NZ policy makers, private enterprise, and global suppliers.</li>
-                  </ul>
-                </div>
-              </div>
+    <!-- 2. Growth & Delivery -->
+    <div class="sub-section reveal">
+      <div class="sub-header">
+        <span class="sub-header-num">2</span>
+        <div class="sub-header-text"><h3>Growth &amp; Delivery</h3><p>Operations, systems &amp; scale</p></div>
+      </div>
+      <div class="org-group">
+        <div class="org-group-header"><h4>LegaSea</h4><span>Auckland, NZ</span></div>
+        <div class="nested-roles">
+          <div class="nested-role">
+            <h3 class="tl-role">Kai Ika Growth Lead &nbsp;<span style="font-size:0.65rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--fern);background:rgba(93,122,90,0.12);border:1px solid rgba(93,122,90,0.3);padding:0.15rem 0.55rem;border-radius:2px;vertical-align:middle;">Current</span></h3>
+            <p class="tl-date">November 2025 – Present</p>
+            <div class="tl-body">
+              <p>Managed day to day operations to develop new approaches to delivering core services while reducing cost, complexity, and staff pressure.</p>
+              <ul>
+                <li>Operations manager for the Kai Ika Project Filleting Station at Westhaven Marina — the largest marina in the southern hemisphere.</li>
+                <li>Supported the delivery of over 2,500 kg of free fish heads and frames to community each week via Marae and community partners.</li>
+                <li>Implemented optimisation and growth strategies, reducing administration by 3 hrs/week.</li>
+                <li>Retrofit and scaled a defunct coffee cart into a coffee fundraiser and engagement tool.</li>
+              </ul>
             </div>
           </div>
         </div>
-
-      </div><!-- end left col -->
-
-      <!-- RIGHT: Sidebar -->
-      <div>
-
-        <div class="sidebar-block reveal">
-          <h3>Awards &amp; Speaking</h3>
-          <div class="award-item">
-            <span class="award-icon">🏆</span>
-            <div class="award-body">
-              <h4>Trafinz Sustainability Leadership Award</h4>
-              <p>Co-awarded for the Auckland Bike Hub Network, September 2023</p>
-            </div>
-          </div>
-          <div class="award-item">
-            <span class="award-icon">🎤</span>
-            <div class="award-body">
-              <h4>2Walk&amp;Cycle Conference Presentation</h4>
-              <p>Auckland Bike Hub Network — vision, process &amp; key learnings. Wellington, February 2024</p>
-            </div>
-          </div>
-          <div class="award-item">
-            <span class="award-icon">🎤</span>
-            <div class="award-body">
-              <h4>Trafinz Conference Co-Presentation</h4>
-              <p>Presented alongside EcoMatters, largest network operator. September 2023</p>
+      </div>
+      <div class="org-group">
+        <div class="org-group-header"><h4>Auckland Transport</h4><span>Auckland, NZ</span></div>
+        <div class="nested-roles">
+          <div class="nested-role">
+            <h3 class="tl-role">Senior Travel Demand Planner</h3>
+            <p class="tl-date">September 2021 – May 2022</p>
+            <div class="tl-body">
+              <p>Tripled team capacity, saving 500 hours annually by developing numerous customer facing and backend systems.</p>
+              <ul>
+                <li>Product owner for a new CRM tool to manage the TravelWise B2B programme.</li>
+                <li>Developed a proof of concept travel gamification app.</li>
+                <li>Created a new travel survey platform to report on and share CO2, time and cost savings.</li>
+              </ul>
             </div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="sidebar-block reveal">
-          <h3>Capabilities</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Programme Management</span>
-            <span class="skill-tag">Stakeholder Engagement</span>
-            <span class="skill-tag">Co-design</span>
-            <span class="skill-tag">Procurement</span>
-            <span class="skill-tag">Behavioural Science</span>
-            <span class="skill-tag">Policy Development</span>
-            <span class="skill-tag">Agile Delivery</span>
-            <span class="skill-tag">Facilitation</span>
-            <span class="skill-tag">CRM &amp; Digital Tools</span>
-            <span class="skill-tag">Transport Planning</span>
-            <span class="skill-tag">Operations &amp; Growth</span>
+    <!-- 3. Behavioural Science -->
+    <div class="sub-section reveal">
+      <div class="sub-header">
+        <span class="sub-header-num">3</span>
+        <div class="sub-header-text"><h3>Behavioural Science</h3><p>Evidence-based behaviour change</p></div>
+      </div>
+      <div class="org-group">
+        <div class="org-group-header"><h4>Auckland Transport</h4><span>Auckland, NZ</span></div>
+        <div class="nested-roles">
+          <div class="nested-role">
+            <h3 class="tl-role">Travel Demand Planner</h3>
+            <p class="tl-date">November 2019 – September 2021</p>
+            <div class="tl-body">
+              <p>Developed behavioural science–informed, equity-based transport initiatives including the e-bike loan scheme, unicycle hackathon, and area-based action plans.</p>
+              <ul>
+                <li>Led the Aotearoa Bike Challenge — 40 events, 617 businesses, 7,500 participants — exceeding monthly cycling targets by 9.4%.</li>
+                <li>Led three regional month-long campaigns reaching over 200,000 Aucklanders.</li>
+                <li>Maintained extensive networks across NZ policy makers, private enterprise, and global suppliers.</li>
+              </ul>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="sidebar-block reveal">
-          <h3>Formal Training</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Foundations of Facilitation</span>
-            <span class="skill-tag">IAP2 Engagement Design</span>
-            <span class="skill-tag">Fundamentals of Agile (ICAgile)</span>
-            <span class="skill-tag">Decolonisation — Tauiwi Solutions</span>
-            <span class="skill-tag">Ngā Kete — Māori Engagement</span>
-          </div>
+    <!-- FIX 2: 3-column info boxes at the bottom -->
+    <div class="consulting-boxes reveal">
+      <div class="sidebar-block">
+        <h3>Awards &amp; Speaking</h3>
+        <div class="award-item"><span class="award-icon">🏆</span><div class="award-body"><h4>Trafinz Sustainability Leadership Award</h4><p>Co-awarded for the Auckland Bike Hub Network, September 2023</p></div></div>
+        <div class="award-item"><span class="award-icon">🎤</span><div class="award-body"><h4>2Walk&amp;Cycle Conference Presentation</h4><p>Auckland Bike Hub Network — vision, process &amp; key learnings. Wellington, February 2024</p></div></div>
+        <div class="award-item"><span class="award-icon">🎤</span><div class="award-body"><h4>Trafinz Conference Co-Presentation</h4><p>Presented alongside EcoMatters, largest network operator. September 2023</p></div></div>
+      </div>
+      <div class="sidebar-block">
+        <h3>Capabilities</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Programme Management</span><span class="skill-tag">Stakeholder Engagement</span><span class="skill-tag">Co-design</span><span class="skill-tag">Procurement</span><span class="skill-tag">Behavioural Science</span><span class="skill-tag">Policy Development</span><span class="skill-tag">Agile Delivery</span><span class="skill-tag">Facilitation</span><span class="skill-tag">CRM &amp; Digital Tools</span><span class="skill-tag">Transport Planning</span><span class="skill-tag">Operations &amp; Growth</span>
         </div>
+      </div>
+      <div class="sidebar-block">
+        <h3>Formal Training</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Foundations of Facilitation</span><span class="skill-tag">IAP2 Engagement Design</span><span class="skill-tag">Fundamentals of Agile (ICAgile)</span><span class="skill-tag">Decolonisation — Tauiwi Solutions</span><span class="skill-tag">Ngā Kete — Māori Engagement</span>
+        </div>
+      </div>
+    </div>
 
-      </div><!-- end sidebar -->
-
-    </div><!-- end consulting-layout -->
   </div>
 </section>
 
-<!-- ═══════════ SCIENCE ═══════════ -->
-<span class="wave-divider">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:var(--cream);">
-    <path d="M0,40 C400,0 1000,60 1440,20 L1440,60 L0,60 Z" fill="var(--ocean)"/>
-  </svg>
-</span>
+<span class="wave-divider"><svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:var(--cream);"><path d="M0,40 C400,0 1000,60 1440,20 L1440,60 L0,60 Z" fill="var(--ocean)"/></svg></span>
 
 <section id="science">
   <div class="section-inner">
     <div class="reveal">
       <span class="section-tag">Science &amp; Communication</span>
       <h2 class="section-title">Research, Environment<br>&amp; Public Voice</h2>
-      <p class="section-intro">
-        A First Class Honours in Marine and Environmental Science, grounded in real-world field monitoring and a track record of turning evidence into policy and public action.
-      </p>
+      <p class="section-intro">A First Class Honours in Marine and Environmental Science, grounded in real-world field monitoring and a track record of turning evidence into policy and public action.</p>
     </div>
-
-    <!-- 1. Academic Qualifications -->
     <div class="sub-section reveal">
       <div class="sub-header sub-header-dark">
         <span class="sub-header-num">1</span>
-        <div class="sub-header-text">
-          <h3>Academic Qualifications</h3>
-          <p>University of Auckland</p>
-        </div>
+        <div class="sub-header-text"><h3>Academic Qualifications</h3><p>University of Auckland</p></div>
       </div>
       <div class="science-grid">
-        <div class="sci-card">
-          <div class="sci-card-icon">🎓</div>
-          <p class="sci-meta">University of Auckland · 2019</p>
-          <h3>BSc Hons — First Class</h3>
-          <p>Thesis: <em>Community, Place and Greenways — Social Perspectives and Meaning of Place in Green Transport Infrastructure.</em> GPA 8.0 / 9.</p>
-        </div>
-        <div class="sci-card">
-          <div class="sci-card-icon">🌊</div>
-          <p class="sci-meta">University of Auckland · 2015–2018</p>
-          <h3>BSc — Marine &amp; Environmental Science</h3>
-          <p>GPA 6.8. First in Course, Marine 202. Runner-up, Budding Marine Conservation Steward Award (Conservation International).</p>
-        </div>
+        <div class="sci-card"><div class="sci-card-icon">🎓</div><p class="sci-meta">University of Auckland · 2019</p><h3>BSc Hons — First Class</h3><p>Thesis: <em>Community, Place and Greenways — Social Perspectives and Meaning of Place in Green Transport Infrastructure.</em> GPA 8.0 / 9.</p></div>
+        <div class="sci-card"><div class="sci-card-icon">🌊</div><p class="sci-meta">University of Auckland · 2015–2018</p><h3>BSc — Marine &amp; Environmental Science</h3><p>GPA 6.8. First in Course, Marine 202. Runner-up, Budding Marine Conservation Steward Award (Conservation International).</p></div>
       </div>
     </div>
-
-    <!-- 2. Science & Policy -->
     <div class="sub-section reveal">
       <div class="sub-header sub-header-dark">
         <span class="sub-header-num">2</span>
-        <div class="sub-header-text">
-          <h3>Science &amp; Policy</h3>
-          <p>Research, monitoring &amp; advocacy</p>
-        </div>
+        <div class="sub-header-text"><h3>Science &amp; Policy</h3><p>Research, monitoring &amp; advocacy</p></div>
       </div>
       <div class="science-grid" style="margin-bottom:0;">
-        <div class="sci-card">
-          <div class="sci-card-icon">🌿</div>
-          <p class="sci-meta">Green Party of Aotearoa · 2021–2024</p>
-          <h3>Policy Co-Convenor &amp; Researcher</h3>
-          <p>Co-convened a standing committee managing ten policies across democracy, global affairs, and science. Led research and drafting of transport, housing, and urban policy. Facilitated a team of eight using decolonised engagement methodologies.</p>
-        </div>
-        <div class="sci-card">
-          <div class="sci-card-icon">🔬</div>
-          <p class="sci-meta">Auckland Council RIMU · 2018–2019</p>
-          <h3>Environmental Monitoring &amp; Research</h3>
-          <p>Monitored Auckland's long-term environmental conditions via regular field sampling. Managed databases in R, wrote department-wide protocols, and identified cost-saving efficiencies.</p>
-        </div>
+        <div class="sci-card"><div class="sci-card-icon">🌿</div><p class="sci-meta">Green Party of Aotearoa · 2021–2024</p><h3>Policy Co-Convenor &amp; Researcher</h3><p>Co-convened a standing committee managing ten policies across democracy, global affairs, and science. Led research and drafting of transport, housing, and urban policy. Facilitated a team of eight using decolonised engagement methodologies.</p></div>
+        <div class="sci-card"><div class="sci-card-icon">🔬</div><p class="sci-meta">Auckland Council RIMU · 2018–2019</p><h3>Environmental Monitoring &amp; Research</h3><p>Monitored Auckland's long-term environmental conditions via regular field sampling. Managed databases in R, wrote department-wide protocols, and identified cost-saving efficiencies.</p></div>
       </div>
       <div class="comms-strip">
-        <div class="comm-chip">
-          <span class="comm-chip-icon">📢</span>
-          <div class="comm-chip-text">
-            <h4>Plastic Diet Spokesperson</h4>
-            <p>University of Auckland, 2017–2021. Conferences, community events, and public advocacy for plastic-free living.</p>
-          </div>
-        </div>
-        <div class="comm-chip">
-          <span class="comm-chip-icon">🌱</span>
-          <div class="comm-chip-text">
-            <h4>Sustainable Future Collective</h4>
-            <p>Founding member, University of Auckland, 2018–2019.</p>
-          </div>
-        </div>
+        <div class="comm-chip"><span class="comm-chip-icon">📢</span><div class="comm-chip-text"><h4>Plastic Diet Spokesperson</h4><p>University of Auckland, 2017–2021. Conferences, community events, and public advocacy for plastic-free living.</p></div></div>
+        <div class="comm-chip"><span class="comm-chip-icon">🌱</span><div class="comm-chip-text"><h4>Sustainable Future Collective</h4><p>Founding member, University of Auckland, 2018–2019.</p></div></div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ═══════════ MARINE ═══════════ -->
-<span class="wave-divider">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:var(--ocean);">
-    <path d="M0,20 C300,60 700,0 1000,40 C1200,65 1340,10 1440,30 L1440,60 L0,60 Z" fill="var(--white)"/>
-  </svg>
-</span>
+<span class="wave-divider"><svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:var(--ocean);"><path d="M0,20 C300,60 700,0 1000,40 C1200,65 1340,10 1440,30 L1440,60 L0,60 Z" fill="var(--white)"/></svg></span>
 
 <section id="marine">
   <div class="marine-bg-shape"></div>
@@ -621,83 +426,23 @@
     <div class="reveal">
       <span class="section-tag">Marine &amp; Engineering</span>
       <h2 class="section-title">On the Water &amp;<br>Making Things Work</h2>
-      <p class="section-intro">
-        From restoring yachts to pay university tuition, to standing watch aboard a 48m superyacht in New York — a lifetime of hands-on marine and engineering work.
-      </p>
+      <p class="section-intro">From restoring yachts to pay university tuition, to standing watch aboard a 48m superyacht in New York — a lifetime of hands-on marine and engineering work.</p>
     </div>
-
     <div class="marine-timeline reveal">
-      <div class="mtl-item">
-        <p class="mtl-org">S/Y Arabella · New York, USA</p>
-        <h4 class="mtl-role">Deck / Engineer — 48m Sailing Yacht</h4>
-        <p class="mtl-date">June – October 2025</p>
-        <div class="mtl-body">Shadowed the first engineer on all systems: hydraulic furler and windlass rebuilds, generator and main engine servicing, AC/DC rewiring, fresh water replumbing. Repainted aluminium topsides with Awlgrip. Stood watch on overnight deliveries and charter weeks.</div>
-      </div>
-      <div class="mtl-item">
-        <p class="mtl-org">Contract Yacht Work · NZ &amp; USA</p>
-        <h4 class="mtl-role">Refits &amp; Restorations</h4>
-        <p class="mtl-date">2015 – 2018</p>
-        <div class="mtl-body">Delivered a 35m ex-trawler 700nm around the coast of NZ. Restored yachts from 6–12m — full electrical rewires, diesel engine rebuilds, deck repairs, rig replacement — to pay my way through university.</div>
-      </div>
-      <div class="mtl-item">
-        <p class="mtl-org">Chesapeake Boating Club · Baltimore, USA</p>
-        <h4 class="mtl-role">Baltimore Manager → Dockhand</h4>
-        <p class="mtl-date">May 2013 – February 2016</p>
-        <div class="mtl-body">Managed a 21-boat member marina at age 18. Led all repairs and maintenance, trained 15 contractors, and captained 50+ three-hour guided harbour tours.</div>
-      </div>
-      <div class="mtl-item">
-        <p class="mtl-org">JWorld Annapolis · Baltimore, USA</p>
-        <h4 class="mtl-role">Sailing Coach &amp; Guide</h4>
-        <p class="mtl-date">May 2014 – February 2015</p>
-        <div class="mtl-body">Taught adults and teenagers to sail over five-day courses. Skippered 50+ three-hour guided harbour tours on unpowered sloops.</div>
-      </div>
+      <div class="mtl-item"><p class="mtl-org">S/Y Arabella · New York, USA</p><h4 class="mtl-role">Deck / Engineer — 48m Sailing Yacht</h4><p class="mtl-date">June – October 2025</p><div class="mtl-body">Shadowed the first engineer on all systems: hydraulic furler and windlass rebuilds, generator and main engine servicing, AC/DC rewiring, fresh water replumbing. Repainted aluminium topsides with Awlgrip. Stood watch on overnight deliveries and charter weeks.</div></div>
+      <div class="mtl-item"><p class="mtl-org">Contract Yacht Work · NZ &amp; USA</p><h4 class="mtl-role">Refits &amp; Restorations</h4><p class="mtl-date">2015 – 2018</p><div class="mtl-body">Delivered a 35m ex-trawler 700nm around the coast of NZ. Restored yachts from 6–12m — full electrical rewires, diesel engine rebuilds, deck repairs, rig replacement — to pay my way through university.</div></div>
+      <div class="mtl-item"><p class="mtl-org">Chesapeake Boating Club · Baltimore, USA</p><h4 class="mtl-role">Baltimore Manager → Dockhand</h4><p class="mtl-date">May 2013 – February 2016</p><div class="mtl-body">Managed a 21-boat member marina at age 18. Led all repairs and maintenance, trained 15 contractors, and captained 50+ three-hour guided harbour tours.</div></div>
+      <div class="mtl-item"><p class="mtl-org">JWorld Annapolis · Baltimore, USA</p><h4 class="mtl-role">Sailing Coach &amp; Guide</h4><p class="mtl-date">May 2014 – February 2015</p><div class="mtl-body">Taught adults and teenagers to sail over five-day courses. Skippered 50+ three-hour guided harbour tours on unpowered sloops.</div></div>
     </div>
-
     <div class="marine-certs">
-      <div class="cert-block reveal">
-        <h3>Qualifications</h3>
-        <ul class="cert-list">
-          <li>STCW 95 Basic Training <span class="cert-year">2024 · exp. 2029</span></li>
-          <li>SSI DiveMaster <span class="cert-year">2024</span></li>
-          <li>ENG1 Medical <span class="cert-year">2024 · exp. 2026</span></li>
-          <li>NZCG Boatmaster <span class="cert-year">2024</span></li>
-          <li>MNZ VHF Radio Operator <span class="cert-year">2021</span></li>
-          <li>ASA 101–104 Bareboat Cruising <span class="cert-year">2010</span></li>
-          <li>Swiftwater &amp; Flood Rescue <span class="cert-year">2018</span></li>
-        </ul>
-      </div>
-      <div class="cert-block reveal">
-        <h3>Engineering Skills</h3>
-        <ul class="cert-list">
-          <li>Brightwork — LP paint, varnish, stain</li>
-          <li>Diesel engine maintenance</li>
-          <li>AC/DC electrical systems</li>
-          <li>Plumbing &amp; head systems</li>
-          <li>Deck systems &amp; winch repair</li>
-          <li>Fibreglass &amp; gelcoat repair</li>
-          <li>Light carpentry</li>
-        </ul>
-      </div>
-      <div class="cert-block reveal" style="background:var(--ocean);border-color:transparent;">
-        <h3 style="color:var(--foam);border-bottom-color:rgba(255,255,255,0.08);">At a Glance</h3>
-        <div class="stats-grid">
-          <div class="stat-item"><div class="stat-num">5k</div><div class="stat-label">Nautical miles</div></div>
-          <div class="stat-item"><div class="stat-num">48m</div><div class="stat-label">Largest vessel</div></div>
-          <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Boats restored</div></div>
-          <div class="stat-item"><div class="stat-num">12yr</div><div class="stat-label">On the water</div></div>
-        </div>
-      </div>
+      <div class="cert-block reveal"><h3>Qualifications</h3><ul class="cert-list"><li>STCW 95 Basic Training <span class="cert-year">2024 · exp. 2029</span></li><li>SSI DiveMaster <span class="cert-year">2024</span></li><li>ENG1 Medical <span class="cert-year">2024 · exp. 2026</span></li><li>NZCG Boatmaster <span class="cert-year">2024</span></li><li>MNZ VHF Radio Operator <span class="cert-year">2021</span></li><li>ASA 101–104 Bareboat Cruising <span class="cert-year">2010</span></li><li>Swiftwater &amp; Flood Rescue <span class="cert-year">2018</span></li></ul></div>
+      <div class="cert-block reveal"><h3>Engineering Skills</h3><ul class="cert-list"><li>Brightwork — LP paint, varnish, stain</li><li>Diesel engine maintenance</li><li>AC/DC electrical systems</li><li>Plumbing &amp; head systems</li><li>Deck systems &amp; winch repair</li><li>Fibreglass &amp; gelcoat repair</li><li>Light carpentry</li></ul></div>
+      <div class="cert-block reveal" style="background:var(--ocean);border-color:transparent;"><h3 style="color:var(--foam);border-bottom-color:rgba(255,255,255,0.08);">At a Glance</h3><div class="stats-grid"><div class="stat-item"><div class="stat-num">5k</div><div class="stat-label">Nautical miles</div></div><div class="stat-item"><div class="stat-num">48m</div><div class="stat-label">Largest vessel</div></div><div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Boats restored</div></div><div class="stat-item"><div class="stat-num">12yr</div><div class="stat-label">On the water</div></div></div></div>
     </div>
-
   </div>
 </section>
 
-<!-- ═══════════ MUSIC ═══════════ -->
-<span class="wave-divider">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:var(--white);">
-    <path d="M0,30 C240,0 480,60 720,30 C960,0 1200,55 1440,25 L1440,60 L0,60 Z" fill="var(--deep)"/>
-  </svg>
-</span>
+<span class="wave-divider"><svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:var(--white);"><path d="M0,30 C240,0 480,60 720,30 C960,0 1200,55 1440,25 L1440,60 L0,60 Z" fill="var(--deep)"/></svg></span>
 
 <section id="music">
   <div class="music-bg"></div>
@@ -705,68 +450,30 @@
     <div class="reveal">
       <span class="section-tag">Music</span>
       <h2 class="section-title">Sound &amp;<br>Performance</h2>
-      <p class="section-intro">
-        Multi-instrumentalist and live music devotee. Music is the other language — for everything that can't quite be said any other way.
-      </p>
+      <p class="section-intro">Multi-instrumentalist and live music devotee. Music is the other language — for everything that can't quite be said any other way.</p>
     </div>
-
     <div class="music-layout">
       <div class="instruments-showcase reveal">
-        <div class="instr-card">
-          <span class="instr-icon">🎷</span>
-          <div class="instr-body">
-            <h4>Saxophone</h4>
-            <p>Primary instrument. From jazz standards to improvised sessions and live performance.</p>
-          </div>
-        </div>
-        <div class="instr-card">
-          <span class="instr-icon">🎸</span>
-          <div class="instr-body">
-            <h4>Guitar</h4>
-            <p>Acoustic and electric. Songwriting, accompaniment, and performance.</p>
-          </div>
-        </div>
-        <div class="instr-card">
-          <span class="instr-icon">🎹</span>
-          <div class="instr-body">
-            <h4>Piano</h4>
-            <p>Classical foundations, jazz harmony, and composition.</p>
-          </div>
-        </div>
+        <div class="instr-card"><span class="instr-icon">🎷</span><div class="instr-body"><h4>Saxophone</h4><p>Primary instrument. From jazz standards to improvised sessions and live performance.</p></div></div>
+        <div class="instr-card"><span class="instr-icon">🎸</span><div class="instr-body"><h4>Guitar</h4><p>Acoustic and electric. Songwriting, accompaniment, and performance.</p></div></div>
+        <div class="instr-card"><span class="instr-icon">🎹</span><div class="instr-body"><h4>Piano</h4><p>Classical foundations, jazz harmony, and composition.</p></div></div>
       </div>
-
       <div class="music-context reveal">
         <span class="genre-label">Influences &amp; Interests</span>
-        <div class="genre-pills">
-          <span class="genre-pill">Jazz</span>
-          <span class="genre-pill">Folk</span>
-          <span class="genre-pill">Blues</span>
-          <span class="genre-pill">Classical</span>
-          <span class="genre-pill">Ambient</span>
-          <span class="genre-pill">Funk</span>
-          <span class="genre-pill">Indie</span>
-        </div>
+        <div class="genre-pills"><span class="genre-pill">Jazz</span><span class="genre-pill">Folk</span><span class="genre-pill">Blues</span><span class="genre-pill">Classical</span><span class="genre-pill">Ambient</span><span class="genre-pill">Funk</span><span class="genre-pill">Indie</span></div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ═══════════ CONTACT ═══════════ -->
-<span class="wave-divider">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:var(--deep);">
-    <path d="M0,15 C360,60 900,0 1440,40 L1440,60 L0,60 Z" fill="var(--cream)"/>
-  </svg>
-</span>
+<span class="wave-divider"><svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:var(--deep);"><path d="M0,15 C360,60 900,0 1440,40 L1440,60 L0,60 Z" fill="var(--cream)"/></svg></span>
 
 <section id="contact">
   <div class="section-inner">
     <div class="reveal">
       <span class="section-tag">Contact</span>
       <h2 class="section-title">Let's Talk</h2>
-      <p class="section-intro">
-        Whether it's a consulting conversation, an environmental challenge, a sailing project, or a musical collaboration — I'd love to hear from you.
-      </p>
+      <p class="section-intro">Whether it's a consulting conversation, an environmental challenge, a sailing project, or a musical collaboration — I'd love to hear from you.</p>
     </div>
     <div class="contact-grid reveal">
       <a href="mailto:Ben@Mansfield.consulting" class="contact-chip"><span>✉</span> Ben@Mansfield.consulting</a>
@@ -776,9 +483,7 @@
   </div>
 </section>
 
-<footer>
-  <p>© 2026 Ben Mansfield · Auckland, New Zealand · <a href="#hero">Back to top ↑</a></p>
-</footer>
+<footer><p>© 2026 Ben Mansfield · Auckland, New Zealand · <a href="#hero">Back to top ↑</a></p></footer>
 
 <script>
   const revealEls = document.querySelectorAll('.reveal');
@@ -808,6 +513,5 @@
   }, { threshold: 0.35 });
   sections.forEach(s => navObs.observe(s));
 </script>
-
 </body>
 </html>
