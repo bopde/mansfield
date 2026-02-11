@@ -1,1 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ben Mansfield</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+  <style>
+    /* --- VARIABLES --- */
+    :root {
+      --ocean:     #0d2e4a;
+      --deep:      #071c2e;
+      --tide:      #1a5276;
+      --sky:       #4a90b8;
+      --foam:      #d6eaf8;
+      --sage:      #5d7a5a;
+      --moss:      #3b5c3a;
+      --fern:      #8aaa7a;
+      --sand:      #d4b896;
+      --driftwood: #a07850;
+      --cream:     #f5f0e8;
+      --white:     #fbfaf8;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--white);
+      color: var(--deep);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* --- NAV --- */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(7,28,46,0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(74,144,184,0.15);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--foam);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.74rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(214, 234, 248, 0.65);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.25s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--fern);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--foam); }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+
+    /* --- HERO --- */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--deep);
+      color: var(--foam);
+      text-align: center;
+      padding: 0 2rem;
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3.6rem, 8vw, 7.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero-tagline {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(214,234,248,0.68);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .btn-primary, .btn-outline {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      border-radius: 2px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: 0.25s all;
+      margin: 0 0.5rem;
+    }
+
+    .btn-primary { background: var(--sage); color: var(--white); }
+    .btn-primary:hover { background: var(--moss); transform: translateY(-2px); }
+
+    .btn-outline { border: 1px solid rgba(74,144,184,0.45); color: var(--foam); }
+    .btn-outline:hover { border-color: var(--sky); background: rgba(74,144,184,0.1); transform: translateY(-2px); }
+
+    /* --- SECTIONS --- */
+    section { padding: 7rem 3rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-tag { display: inline-block; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 1rem; padding: 0.28rem 0.85rem; border-radius: 2px; }
+    .section-title { font-family: var(--font-display); font-size: clamp(2.4rem,5vw,4rem); font-weight: 300; margin-bottom: 1.5rem; }
+    .section-intro { font-size: 1rem; font-weight: 300; line-height: 1.8; max-width: 620px; margin-bottom: 3rem; opacity: 0.78; }
+
+    /* --- CONSULTING --- */
+    #consulting { background: var(--cream); }
+    #consulting .section-tag  { background: rgba(13,46,74,0.1); color: var(--ocean); }
+    #consulting .section-title { color: var(--ocean); }
+    .consulting-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; align-items: start; }
+
+    .timeline { position: relative; padding-left: 1.8rem; }
+    .timeline::before {
+      content: ''; position: absolute; top: 8px; bottom: 0; left: 0; width: 1px; background: linear-gradient(to bottom,var(--sage),transparent);
+    }
+
+    .tl-item { position: relative; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(13,46,74,0.07); }
+    .tl-item:last-child { border-bottom: none; margin-bottom: 0; }
+    .tl-item::before { content: ''; position: absolute; left: -1.8rem; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--sage); border: 2px solid var(--cream); }
+
+    .tl-role { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; color: var(--ocean); margin-bottom: 0.18rem; }
+    .tl-org { font-size: 0.76rem; font-weight: 500; letter-spacing: 0.08em; color: var(--sage); text-transform: uppercase; margin-bottom: 0.18rem; }
+    .tl-date { font-size: 0.73rem; color: #aaa; margin-bottom: 0.75rem; }
+    .tl-body { font-size: 0.87rem; color: #555; line-height: 1.72; }
+    .tl-body ul { margin-top: 0.5rem; padding-left: 1.1rem; }
+    .tl-body ul li { margin-bottom: 0.3rem; }
+
+    .consulting-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+    .sidebar-block { background: var(--white); border: 1px solid rgba(13,46,74,0.09); border-radius: 4px; padding: 2rem; }
+    .sidebar-block h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; color: var(--ocean); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(13,46,74,0.07); }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag { font-size: 0.75rem; padding: 0.28rem 0.72rem; border-radius: 2px; background: rgba(13,46,74,0.06); color: var(--ocean); border: 1px solid rgba(13,46,74,0.09); }
+
+    /* --- SCIENCE --- */
+    #science { background: var(--ocean); }
+    #science .section-tag   { background: rgba(74,144,184,0.18); color: var(--sky); }
+    #science .section-title { color: var(--foam); }
+    #science .section-intro { color: rgba(214,234,248,0.68); }
+
+    .science-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 1.8rem;
+    }
+
+    .sci-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(74,144,184,0.2); border-radius: 4px; padding: 2rem; transition: 0.25s; }
+    .sci-card:hover { background: rgba(74,144,184,0.1); border-color: rgba(74,144,184,0.45); transform: translateY(-4px); }
+    .sci-card-icon { font-size: 1.8rem; margin-bottom: 0.9rem; }
+    .sci-meta { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sky); margin-bottom: 0.6rem; }
+    .sci-card h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; color: var(--foam); margin-bottom: 0.6rem; }
+    .sci-card p { font-size: 0.87rem; color: rgba(214,234,248,0.58); line-height: 1.7; }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 860px) { .consulting-layout { grid-template-columns: 1fr; gap: 2.5rem; } }
+    @media (max-width: 640px) { nav { padding: 1rem 1.4rem; } .nav-links { gap: 1rem; } .nav-links a { font-size: 0.65rem; letter-spacing: 0.1em; } section { padding: 4.5rem 1.4rem; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <a href="#hero" class="nav-logo">Ben Mansfield</a>
+    <ul class="nav-links">
+      <li><a href="#consulting">Consulting</a></li>
+      <li><a href="#science">Science</a></li>
+      <li><a href="#marine">Marine</a></li>
+      <li><a href="#music">Music</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div>
+      <h1 class="hero-name">Ben <em>Mansfield</em></h1>
+      <p class="hero-tagline">Consultant, scientist, musician. Connecting knowledge, practice, and creativity across projects worldwide.</p>
+      <div>
+        <a href="#consulting" class="btn-primary">Explore Consulting</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSULTING -->
+  <section id="consulting">
+    <div class="section-inner">
+      <span class="section-tag">Consulting</span>
+      <h2 class="section-title">Programme Management & Consulting Experience</h2>
+      <p class="section-intro">I work across science and consulting projects, delivering programme management, strategy, and technical expertise.</p>
+      <div class="consulting-layout">
+        <!-- TIMELINE -->
+        <div class="timeline">
+          <div class="tl-item">
+            <h3 class="tl-role">Programme Manager</h3>
+            <div class="tl-org">Ecological Associates</div>
+            <div class="tl-date">2019 – Present</div>
+            <div class="tl-body">
+              <p>Leading multi-disciplinary projects in environmental assessment and sustainability. Key responsibilities include:</p>
+              <ul>
+                <li>Project scoping, scheduling, and team coordination</li>
+                <li>Client communication and reporting</li>
+                <li>Quality assurance and delivery oversight</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tl-item">
+            <h3 class="tl-role">Environmental Consultant</h3>
+            <div class="tl-org">Green Futures Ltd.</div>
+            <div class="tl-date">2016 – 2019</div>
+            <div class="tl-body">
+              <ul>
+                <li>Ecological assessments and reporting</li>
+                <li>Community engagement and stakeholder consultation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- SIDEBAR -->
+        <div class="consulting-sidebar">
+          <div class="sidebar-block">
+            <h3>Capabilities</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Programme Management</span>
+              <span class="skill-tag">Environmental Consulting</span>
+              <span class="skill-tag">Project Planning</span>
+              <span class="skill-tag">Stakeholder Engagement</span>
+            </div>
+          </div>
+          <div class="sidebar-block">
+            <h3>Awards</h3>
+            <div class="award-item">
+              <div class="award-icon">🏆</div>
+              <div class="award-body">
+                <h4>Best Environmental Project 2021</h4>
+                <p>Recognized for outstanding delivery of multi-site ecological assessment.</p>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar-block">
+            <h3>Training</h3>
+            <p>Certifications in Project Management, Environmental Law, and Ecological Survey Techniques.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENCE -->
+  <section id="science">
+    <div class="section-inner">
+      <span class="section-tag">Science</span>
+      <h2 class="section-title">Research & Publications</h2>
+      <p class="section-intro">I engage in research across ecology and environmental sciences, contributing to peer-reviewed publications and collaborative projects.</p>
+      <div class="science-grid">
+        <div class="sci-card">
+          <div class="sci-card-icon">🔬</div>
+          <div class="sci-meta">Ecology</div>
+          <h3>Urban Biodiversity Study</h3>
+          <p>Analyzing species diversity in urban green spaces, including habitat mapping and population monitoring.</p>
+        </div>
+        <div class="sci-card">
+          <div class="sci-card-icon">🌿</div>
+          <div class="sci-meta">Conservation</div>
+          <h3>Coastal Habitat Restoration</h3>
+          <p>Leading projects to restore wetland and coastal ecosystems, integrating community engagement and policy guidance.</p>
+        </div>
+        <div class="sci-card">
+          <div class="sci-card-icon">📊</div>
+          <div class="sci-meta">Data Analysis</div>
+          <h3>Ecological Modelling</h3>
+          <p>Developing predictive models for species distributions and environmental impact assessments.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
 
